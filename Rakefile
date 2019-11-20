@@ -1,12 +1,10 @@
 # frozen_string_literal: true
 
-require 'bundler'
-Bundler::GemHelper.install_tasks
+require "bundler/gem_tasks"
+require "rspec/core/rake_task"
+require "rubocop/rake_task"
 
-desc 'Run all tests by default'
-task default: :spec
+RSpec::Core::RakeTask.new(:spec)
+RuboCop::RakeTask.new
 
-require 'rspec/core/rake_task'
-RSpec::Core::RakeTask.new do |t|
-  t.rspec_opts = ['--color', '--format doc', '--require spec_helper']
-end
+task default: %i[rubocop spec]
