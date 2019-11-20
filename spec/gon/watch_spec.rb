@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "spec_helper"
+
 describe Gon::Watch do
   let(:controller) { ActionController::Base.new }
   let(:request) { ActionDispatch::Request.new({}) }

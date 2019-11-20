@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "spec_helper"
+
 describe Gon do
   describe ".template_path" do
     let(:template_path) { "spec/test_data/sample.jbuilder" }

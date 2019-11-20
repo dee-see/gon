@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "spec_helper"
+
 describe Gon::Global do
   before(:each) do
     Gon::Global.clear

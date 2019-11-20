@@ -13,16 +13,16 @@ module Rails
   end
 end
 
-require "gon"
-
-require "jbuilder"
-
 if ENV["COVER"]
   require "simplecov"
   SimpleCov.root File.join(File.dirname(__FILE__), "..")
   SimpleCov.add_filter "/spec/"
   SimpleCov.start
 end
+
+require "gon"
+
+require "jbuilder"
 
 RSpec.configure do |config|
   config.before(:each) do
