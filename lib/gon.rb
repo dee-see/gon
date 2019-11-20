@@ -1,28 +1,28 @@
 # frozen_string_literal: true
 
-require 'request_store'
-require 'action_view'
-require 'action_controller'
-require 'multi_json'
+require "request_store"
+require "action_view"
+require "action_controller"
+require "multi_json"
 
-require 'gon/base'
-require 'gon/env_finder'
-require 'gon/global'
-require 'gon/watch'
-require 'gon/request'
-require 'gon/helpers'
-require 'gon/escaper'
-require 'gon/rabl'
-require 'gon/jbuilder'
-require 'gon/jbuilder/parser'
-require 'gon/json_dumper'
+require "gon/base"
+require "gon/env_finder"
+require "gon/global"
+require "gon/watch"
+require "gon/request"
+require "gon/helpers"
+require "gon/escaper"
+require "gon/rabl"
+require "gon/jbuilder"
+require "gon/jbuilder/parser"
+require "gon/json_dumper"
 
 # NOTE : ActionDispatch::Request#uuid appears only in Rails 3.2.1
 unless ActionDispatch::Request.public_instance_methods.include?(:uuid)
-  require 'gon/compatibility/old_rails'
+  require "gon/compatibility/old_rails"
 end
 
-require 'gon/spec_helpers'
+require "gon/spec_helpers"
 
 class Gon
   class << self
@@ -41,11 +41,11 @@ class Gon
         end
 
         if self == Gon && !current_gon
-          raise 'Assign request-specific gon variables only through `gon` ' \
-                'helper, not through Gon constant'
+          raise "Assign request-specific gon variables only through `gon` " \
+                "helper, not through Gon constant"
         end
 
-        set_variable(method.to_s.delete('='), args[0])
+        set_variable(method.to_s.delete("="), args[0])
       else
         get_variable(method.to_s)
       end
@@ -69,7 +69,7 @@ class Gon
 
     def push(data = {}, merge = false)
       unless data.respond_to? :each_pair
-        raise 'Object must have each_pair method'
+        raise "Object must have each_pair method"
       end
 
       if merge
@@ -93,17 +93,17 @@ class Gon
 
     def rabl(*args)
       data, options = Gon::Rabl.handler(args)
-      store_builder_data 'rabl', data, options
+      store_builder_data "rabl", data, options
     end
 
     def jbuilder(*args)
       ensure_template_handler_is_defined
       data, options = Gon::Jbuilder.handler(args)
-      store_builder_data 'jbuilder', data, options
+      store_builder_data "jbuilder", data, options
     end
 
     def inspect
-      'Gon'
+      "Gon"
     end
 
     private
@@ -130,7 +130,7 @@ class Gon
     # before gon. By loading jbuilder again, JbuilderTemplate will
     # now be defined
     def ensure_template_handler_is_defined
-      load 'jbuilder.rb' unless defined?(JbuilderTemplate)
+      load "jbuilder.rb" unless defined?(JbuilderTemplate)
     end
   end
 end

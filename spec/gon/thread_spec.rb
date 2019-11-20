@@ -22,12 +22,12 @@ class GonTestWorker
   end
 end
 
-describe 'threading behaviour' do
+describe "threading behaviour" do
   before do
     allow(Gon).to receive(:current_gon).and_call_original
   end
 
-  it 'is threadsafe' do
+  it "is threadsafe" do
     threads = []
     10.times do
       threads << Thread.new do

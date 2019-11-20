@@ -12,18 +12,18 @@ class Gon
       end
 
       def inspect
-        'Gon::Global'
+        "Gon::Global"
       end
 
       def rabl(*args)
         data, options = Gon::Rabl.handler(args, true)
-        store_builder_data 'rabl', data, options
+        store_builder_data "rabl", data, options
       end
 
       def jbuilder(*args)
         ensure_template_handler_is_defined
         data, options = Gon::Jbuilder.handler(args, true)
-        store_builder_data 'jbuilder', data, options
+        store_builder_data "jbuilder", data, options
       end
 
       private

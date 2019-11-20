@@ -9,7 +9,7 @@ class Gon
         Gon.clear
         Gon::Base.render_data(options)
       else
-        ''
+        ""
       end
     end
 

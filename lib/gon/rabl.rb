@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
-require 'action_view'
+require "action_view"
 
 begin
-  require 'rabl' # use rabl gem if it's available
+  require "rabl" # use rabl gem if it's available
 rescue LoadError
   # It's ok to ignore this gem loading as rabl support is optional
 end
 begin
-  require 'rabl-rails' # use rabl-rails gem if it's available
+  require "rabl-rails" # use rabl-rails gem if it's available
 rescue LoadError
   # It's ok to ignore this gem loading as rabl support is optional
 end
@@ -19,12 +19,12 @@ class Gon
       def handler(args, global = false)
         options = parse_options_from args, global
         if global && !options[:template]
-          raise 'You should provide :template when use rabl with global ' \
-                'variables'
+          raise "You should provide :template when use rabl with global " \
+                "variables"
         end
 
         data = parse_rabl \
-          Gon::EnvFinder.template_path(options, 'rabl'),
+          Gon::EnvFinder.template_path(options, "rabl"),
           Gon::EnvFinder.controller_env(options),
           options[:locals]
 
@@ -39,7 +39,7 @@ class Gon
         elsif defined? ::RablRails
           parse_with_rabl_rails rabl_path, controller, locals
         else
-          raise 'rabl or rabl-rails must be required in order to use gon.rabl'
+          raise "rabl or rabl-rails must be required in order to use gon.rabl"
         end
       end
 
@@ -48,7 +48,7 @@ class Gon
         source = File.read(rabl_path)
         include_helpers
         rabl_engine = ::Rabl::Engine.new(source,
-                                         format: 'json',
+                                         format: "json",
                                          template: rabl_path)
         output = rabl_engine.render(controller, locals)
         JSON.parse(output)
@@ -71,8 +71,8 @@ class Gon
       def parse_options_from(args, global)
         if old_api? args
           unless global
-            text =  '[DEPRECATION] view_path argument is now optional. ' \
-                    'If you need to specify it, ' \
+            text =  "[DEPRECATION] view_path argument is now optional. " \
+                    "If you need to specify it, " \
                     "please use gon.rabl(:template => 'path')"
             warn text
           end

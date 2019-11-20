@@ -1,19 +1,19 @@
 # frozen_string_literal: true
 
-require 'ostruct'
+require "ostruct"
 
 class Gon
   # rubocop:disable Metrics/ModuleLength
   module Base
     VALID_OPTION_DEFAULTS = {
-      namespace: 'gon',
+      namespace: "gon",
       camel_case: false,
       camel_depth: 1,
       watch: false,
       need_tag: true,
       type: false,
       cdata: true,
-      global_root: 'global',
+      global_root: "global",
       namespace_check: false,
       amd: false,
       nonce: nil
@@ -50,13 +50,13 @@ class Gon
       end
 
       def formatted_data(opts)
-        script = ''
+        script = ""
         before, after = render_wrap(opts)
         script += before
 
         script += gon_variables(opts.global_root)
                   .map { |key, val| render_variable(opts, key, val) }.join
-        script += (render_watch(opts) || '')
+        script += (render_watch(opts) || "")
 
         script += after
         script
@@ -65,7 +65,7 @@ class Gon
       def render_wrap(opts)
         if opts.amd
           ["define('#{opts.namespace}',[],function(){var gon={};",
-           'return gon;});']
+           "return gon;});"]
         else
           before = \
             if opts.namespace_check
@@ -73,7 +73,7 @@ class Gon
             else
               "window.#{opts.namespace}={};"
             end
-          [before, '']
+          [before, ""]
         end
       end
 

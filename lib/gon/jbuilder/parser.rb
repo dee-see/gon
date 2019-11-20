@@ -18,11 +18,11 @@ class Gon
         assign_controller_variables controller
         eval_controller_helpers controller
         eval_controller_url_helpers controller
-        locals['__controller'] = controller
+        locals["__controller"] = controller
         wrap_locals_in_methods locals
 
         partials = find_partials(File.readlines(template_location))
-        source = partials.join('')
+        source = partials.join("")
 
         parse_source source, controller
       end
@@ -99,8 +99,8 @@ class Gon
 
       def parse_path(path)
         return path if File.exist?(path)
-        if (splitted = path.split('/')).blank?
-          raise 'Something wrong with partial path in your jbuilder templates'
+        if (splitted = path.split("/")).blank?
+          raise "Something wrong with partial path in your jbuilder templates"
         elsif splitted.size == 1
           splitted.shift(@_controller_name)
         end
@@ -110,7 +110,7 @@ class Gon
 
       def construct_path(args)
         last_arg = args.pop
-        tmp_path = 'app/views/' + args.join('/')
+        tmp_path = "app/views/" + args.join("/")
         path = path_with_ext(tmp_path + "/_#{last_arg}")
         path || path_with_ext(tmp_path + "/#{last_arg}")
       end

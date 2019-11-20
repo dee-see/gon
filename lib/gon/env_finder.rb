@@ -2,8 +2,8 @@
 
 class Gon
   module EnvFinder
-    ENV_CONTROLLER_KEY = 'action_controller.instance'
-    ENV_RESPONSE_KEY = 'action_controller.rescue.response'
+    ENV_CONTROLLER_KEY = "action_controller.instance"
+    ENV_RESPONSE_KEY = "action_controller.rescue.response"
 
     class << self
       def controller_env(options = {})
@@ -12,8 +12,8 @@ class Gon
             current_gon &&
             current_gon.env[ENV_CONTROLLER_KEY] ||
             current_gon.env[ENV_RESPONSE_KEY]
-              .instance_variable_get('@template')
-              .instance_variable_get('@controller')
+              .instance_variable_get("@template")
+              .instance_variable_get("@controller")
           )
       end
 
@@ -22,7 +22,7 @@ class Gon
           if right_extension?(extension, options[:template])
             options[:template]
           else
-            [options[:template], extension].join('.')
+            [options[:template], extension].join(".")
           end
         else
           controller = controller_env(options).controller_path

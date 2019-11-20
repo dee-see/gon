@@ -26,6 +26,6 @@ class Gon
   end
 end
 
-if ENV['RAILS_ENV'] == 'test' && defined?(ActionController::TestCase::Behavior)
+if ENV["RAILS_ENV"] == "test" && defined?(ActionController::TestCase::Behavior)
   ActionController::TestCase::Behavior.include Gon::SpecHelper::Rails
 end

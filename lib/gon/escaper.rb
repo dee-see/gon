@@ -15,7 +15,7 @@ class Gon
 
       def javascript_tag(content, type, cdata, nonce)
         options = {}
-        options.merge!(type: 'text/javascript') if type
+        options.merge!(type: "text/javascript") if type
         options.merge!(nonce: nonce) if nonce
 
         content_tag(:script,
@@ -34,7 +34,7 @@ class Gon
       private
 
       def escape_line_separator(javascript)
-        javascript.gsub(/\\u2028/u, '&#x2028;')
+        javascript.gsub(/\\u2028/u, "&#x2028;")
       end
     end
   end

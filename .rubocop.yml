@@ -4,8 +4,13 @@ AllCops:
   Exclude:
     - 'spec/test_data/*'
     - 'gon.gemspec'
+
 Lint/HandleExceptions:
   AllowComments: true
+
+Style/StringLiterals:
+  EnforcedStyle: 'double_quotes'
+
 Naming/AccessorMethodName:
   Exclude:
     - 'lib/gon/jbuilder/parser.rb'

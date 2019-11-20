@@ -8,10 +8,10 @@ class Gon
         valid_options? options, global
 
         controller = Gon::EnvFinder.controller_env(options)
-        controller_name = global ? '' : controller.controller_path
+        controller_name = global ? "" : controller.controller_path
 
         parser = Gon::Jbuilder::Parser.new(
-          template_path: Gon::EnvFinder.template_path(options, 'jbuilder'),
+          template_path: Gon::EnvFinder.template_path(options, "jbuilder"),
           controller: controller,
           controller_name: controller_name,
           locals: options[:locals]
@@ -25,15 +25,15 @@ class Gon
 
       def valid_options?(options, global)
         if global && !options[:template]
-          raise 'You should provide :template when use jbuilder with global ' \
-                'variables'
+          raise "You should provide :template when use jbuilder with global " \
+                "variables"
         end
       end
 
       def parse_options_from(args)
         if old_api? args
-          text =  '[DEPRECATION] view_path argument is now optional. ' \
-                  'If you need to specify it, ' \
+          text =  "[DEPRECATION] view_path argument is now optional. " \
+                  "If you need to specify it, " \
                   "please use gon.jbuilder(:template => 'path')"
           warn text
 
