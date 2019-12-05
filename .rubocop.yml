@@ -5,7 +5,7 @@ AllCops:
     - 'spec/test_data/*'
     - 'gon.gemspec'
 
-Lint/HandleExceptions:
+Lint/SuppressedException:
   AllowComments: true
 
 Style/StringLiterals:
