@@ -90,7 +90,7 @@ describe Gon do
       Gon::Request
         .instance_variable_set(:@request_id, request.object_id)
       expect(ActionView::Base.instance_methods).to include(:include_gon)
-      @base = ActionView::Base.new
+      @base = ActionView::Base.new(ActionView::Base.build_lookup_context(nil))
       @base.request = request
     end
 
@@ -260,7 +260,7 @@ describe Gon do
     before(:each) do
       Gon::Request
         .instance_variable_set(:@request_id, request.object_id)
-      @base = ActionView::Base.new
+      @base = ActionView::Base.new(ActionView::Base.build_lookup_context(nil))
       @base.request = request
     end
 

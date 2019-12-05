@@ -15,6 +15,7 @@ describe Gon do
 
     context "render template with deprecation" do
       it "still works" do
+        expect(Gon::Rabl).to receive(:warn).with(/\[DEPRECATION\]/)
         Gon.rabl template_path, controller: controller
         expect(Gon.objects.length).to eq(2)
       end

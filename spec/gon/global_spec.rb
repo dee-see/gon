@@ -33,7 +33,7 @@ describe Gon::Global do
     before(:each) do
       Gon.clear
       expect(ActionView::Base.instance_methods).to include(:include_gon)
-      @base = ActionView::Base.new
+      @base = ActionView::Base.new(ActionView::Base.build_lookup_context(nil))
       @base.request = request
     end
 
