@@ -3,6 +3,7 @@
 require "request_store"
 require "action_view"
 require "action_controller"
+require "active_support/core_ext"
 require "multi_json"
 
 require "gon/base"
